@@ -1,4 +1,4 @@
-promotionFrame = CreateFrame("Frame", "MyAddonPromotionFrame", UIParent, "YourAddon_LegolandoAddonButtonTemplate")
+promotionFrame = CreateFrame("Frame", "MyAddonPromotionFrame", UIParent, "YourAddon_SimplePromotionTemplate")
 promotionFrame:SetPoint("CENTER", UIParent, "CENTER")
 
 --______________________________________________________________________

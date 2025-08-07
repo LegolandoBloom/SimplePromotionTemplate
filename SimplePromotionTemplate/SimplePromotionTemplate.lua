@@ -143,16 +143,16 @@ end
 function YourAddon_LegolandoAddonButtonMixin:OnEnter()
     local size = self:GetSize()
 
-    LibSimplePromotionTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", size/10, (size/12)*14)
-    LibSimplePromotionTooltip:PlaceTexture(self.tooltipPicture, self.tooltipPictureWidth, self.tooltipPictureHeight, self.tooltipPictureAnchor, self.tooltipPicturePaddingX, self.tooltipPicturePaddingY)
-    LibSimplePromotionTooltip:AddLine(self.tooltipTitle)
-    LibSimplePromotionTooltip:AddLine(self.tooltipText, 1, 1, 1, true)
-    LibSimplePromotionTooltip:Show()
+    YourAddon_SimplePromotionTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", size/10, (size/12)*14)
+    YourAddon_SimplePromotionTooltip:PlaceTexture(self.tooltipPicture, self.tooltipPictureWidth, self.tooltipPictureHeight, self.tooltipPictureAnchor, self.tooltipPicturePaddingX, self.tooltipPicturePaddingY)
+    YourAddon_SimplePromotionTooltip:AddLine(self.tooltipTitle)
+    YourAddon_SimplePromotionTooltip:AddLine(self.tooltipText, 1, 1, 1, true)
+    YourAddon_SimplePromotionTooltip:Show()
 end
 
 
 function YourAddon_LegolandoAddonButtonMixin:OnLeave()
-    LibSimplePromotionTooltip:Hide()
+    YourAddon_SimplePromotionTooltip:Hide()
 end
 
 function YourAddon_LegolandoAddonButtonMixin:Clear()
@@ -237,7 +237,7 @@ function YourAddon_SimplePromotionMixin:SetupButtons()
         for j = 1, columns do
             local id = (i-1)*columns + j
             local parentKey = "addonButton" .. id
-            addonsFrame[parentKey] = CreateFrame("Button", nil, addonsFrame, "YourAddon_AddonButtonTemplate", id)
+            addonsFrame[parentKey] = CreateFrame("Button", nil, addonsFrame, "YourAddon_LegolandoAddonButtonTemplate", id)
             addonsFrame[parentKey]:SetPoint("TOPLEFT", addonsFrame, "TOPLEFT", (j-1)*(buttonSize + spaceBetweenColumns), -1*(i-1)*(buttonSize + spaceBetweenLines))
             addonsFrame[parentKey]:SetSize(buttonSize, buttonSize)
             addonsFrame[parentKey].Icon:SetSize(buttonSize, buttonSize)

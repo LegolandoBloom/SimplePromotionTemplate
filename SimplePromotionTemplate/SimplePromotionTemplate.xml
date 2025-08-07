@@ -100,7 +100,7 @@
     <!-- ____________________________________[3]______________________________________________ -->
     <!--               Templates made by Legolando, specifically for this lib                  -->
     <!-- ____________________________________[3]______________________________________________ -->
-    <GameTooltip name= "YourAddon_SimplePromotionTooltip" inherits="YourAddon__LegolandoPictureTooltipTemplate"/>
+    <GameTooltip name= "YourAddon_SimplePromotionTooltip" inherits="YourAddon_LegolandoPictureTooltipTemplate"/>
     <Button name="YourAddon_LegolandoAddonButtonTemplate" mixin="YourAddon_LegolandoAddonButtonMixin" inherits="IconButtonTemplate" virtual="true">
         <Size x="36" y="36"/>
         <KeyValues>
@@ -198,7 +198,7 @@
                     <!-- Automatically added with Init() -->
                 </Frames>
             </Frame>
-            <Frame name="$parent_PagingFrame" parentKey="PagingFrame" inherits="YourAddon_CollectionsPagingFrameTemplate">
+            <Frame name="$parent_PagingFrame" parentKey="PagingFrame" inherits="YourAddon_PortedCollectionsPagingFrameTemplate">
                 <Anchors>
                     <Anchor point="TOP" relativeTo="$parent" relativePoint="BOTTOM" x="0" y="0"/>
                 </Anchors>
