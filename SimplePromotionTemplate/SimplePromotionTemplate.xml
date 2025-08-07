@@ -1,0 +1,212 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    If you wish to use this Library, NAVIGATE TO section [3] - the rest are ported templates to be used in the main thing
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+    <Script file="SimplePromotionTemplate.lua"/>
+
+    <!-- ____________________________________[1]______________________________________________ -->
+    <!--  Templates Ported directly from Blizzard's FrameXML, just in case it changes later on -->
+    <!-- ____________________________________[1]______________________________________________ -->
+    <Button name="YourAddon_PortedCollectionsPrevPageButton" virtual="true">
+        <Size x="32" y="32" />
+        <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+        <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+    </Button>
+    
+    <Button name="YourAddon_PortedCollectionsNextPageButton" virtual="true">
+        <Size x="32" y="32" />
+        <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+        <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+    </Button>
+
+    <FontString name="YourAddon_PortedCollectionsPageTextTemplate" inherits="GameFontWhite" justifyH="RIGHT" virtual="true"/>
+
+    <Frame name="YourAddon_PortedCollectionsPagingFrameTemplate" mixin="YourAddon_PortedCollectionsPagingMixin" virtual="true">
+        <!-- why 33? it makes it so the button textures display without rounding fuzziness on my screen -->
+        <Size x="33" y="32"/>
+        <Frames>
+            <Button parentKey="PrevPageButton" inherits="YourAddon_PortedCollectionsPrevPageButton">
+                <Anchors>
+                    <Anchor point="LEFT" x="0" y="0" />
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():PreviousPage();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button parentKey="NextPageButton" inherits="YourAddon_PortedCollectionsNextPageButton">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" x="3" y="0" />
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():NextPage();
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString parentKey="PageText" inherits="YourAddon_PortedCollectionsPageTextTemplate">
+                    <Anchors>
+                        <Anchor point="RIGHT" relativePoint="LEFT" x="-11" y="0"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+    <!-- ____________________________________[1]______________________________________________ -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+
+    <!-- ____________________________________[2]______________________________________________ -->
+    <!--        Generalized Templates made by Legolando, to be used in this library            -->
+    <!-- ____________________________________[2]______________________________________________ -->
+    <GameTooltip name= "YourAddon_LegolandoPictureTooltipTemplate" mixin="YourAddon_LegolandoPictureTooltipMixin" inherits="GameTooltipTemplate" virtual="true">
+        <KeyValues>
+            <KeyValue key="anchorTexture" value="TOPLEFT" type="string"/>
+            <KeyValue key="paddingL" value="0" type="number"/>
+            <KeyValue key="paddingB" value="0" type="number"/>
+            <KeyValue key="paddingR" value="0" type="number"/>
+            <KeyValue key="paddingT" value="0" type="number"/>
+        </KeyValues>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="$parent_Texture" parentKey="texture">
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnShow inherit="append" method="OnShow"/>
+            <OnHide inherit="append" method="OnHide"/>
+        </Scripts>
+    </GameTooltip>
+    <!-- ____________________________________[2]______________________________________________ -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+
+    <!-- ____________________________________[3]______________________________________________ -->
+    <!--               Templates made by Legolando, specifically for this lib                  -->
+    <!-- ____________________________________[3]______________________________________________ -->
+    <GameTooltip name= "YourAddon_SimplePromotionTooltip" inherits="YourAddon__LegolandoPictureTooltipTemplate"/>
+    <Button name="YourAddon_LegolandoAddonButtonTemplate" mixin="YourAddon_LegolandoAddonButtonMixin" inherits="IconButtonTemplate" virtual="true">
+        <Size x="36" y="36"/>
+        <KeyValues>
+            <KeyValue key="iconSize" value="36" type="number"/>
+        </KeyValues>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture parentKey="frameTexture" file="Interface/AddOns/Angleur/images/other-addons/otheraddonsframe.png">
+                    <Size x="48" y="48"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+                <FontString parentKey="text" inherits="GameFontNormal">
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnClick method="OnClick"/>
+        </Scripts>
+        <Frames>
+            <EditBox parentKey="linkBox" autoFocus="true" hidden="true" inherits="InputBoxTemplate">
+                <Size x="140" y="22"/>
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.frameTexture" relativePoint="TOPRIGHT" x="4" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        self:RegisterEvent("GLOBAL_MOUSE_DOWN")
+                    </OnLoad>
+                    <OnEvent>
+                        if event == "GLOBAL_MOUSE_DOWN" then
+                            if not self:IsShown() then return end
+                            if not self:IsMouseOver() then
+                                self:Hide()
+                            end
+                        end
+                    </OnEvent>
+                    <OnShow>
+                        local link = self:GetParent().link
+                        if link then
+                            self:SetText(link)
+                            self:HighlightText()
+                        end
+                    </OnShow>
+                    <OnEditFocusLost>
+                        self:Hide()
+                    </OnEditFocusLost>
+                    <OnTabPressed>
+                        self:Hide()
+                    </OnTabPressed>
+                    <OnEnterPressed>
+                        self:Hide()
+                    </OnEnterPressed>
+                    <OnTextChanged>
+                        if userInput then
+                            local link = self:GetParent().link
+                            if link then
+                                self:SetText(link)
+                                self:HighlightText()
+                            end
+                        end
+                    </OnTextChanged>
+                </Scripts>
+            </EditBox>
+        </Frames>
+    </Button>
+    
+    <!-- See exampleUsage.lua to see how to use the template -->
+    <Frame name="YourAddon_SimplePromotionTemplate" mixin="YourAddon_SimplePromotionMixin" virtual="true">
+        <Size x="300" y="400"/>
+        <KeyValues>
+        <!--           
+          <KeyValue key="lines" type="number" value="2"/>
+          <KeyValue key="columns" type="number" value="3"/>
+          <KeyValue key="spaceBetweenLines" type="number" value="50"/>
+          <KeyValue key="spaceBetweenColumns" type="number" value="20"/> 
+          <KeyValue key="buttonSize" type="number" value="45"/> 
+          <KeyValue key="pageButtonsAnchor" type="string" value="Bottom"/> 
+          <KeyValue key="pageButtonsOffsetX" type="number" value="0"/> 
+          <KeyValue key="pageButtonsOffsetY" type="number" value="0"/> 
+          <KeyValue key="pageButtonsTextAnchor" type="string" value="Bottom"/> 
+        -->
+        </KeyValues>
+        <Frames>
+            <Frame parentKey="addonsFrame" setAllPoints="true">
+                <Size x="1" y="1"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="0" y="0"/>
+                </Anchors>
+                <Frames>
+                    <!-- Automatically added with Init() -->
+                </Frames>
+            </Frame>
+            <Frame name="$parent_PagingFrame" parentKey="PagingFrame" inherits="YourAddon_CollectionsPagingFrameTemplate">
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parent" relativePoint="BOTTOM" x="0" y="0"/>
+                </Anchors>
+            </Frame>
+        </Frames>
+    </Frame>
+    <!-- ____________________________________[3]______________________________________________ -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+</Ui>

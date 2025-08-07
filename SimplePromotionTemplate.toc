@@ -1,0 +1,23 @@
+## Interface: 11506, 11507, 20504, 30405, 40402, 40401, 50500, 110105, 110107, 110200
+## Version: 1.0.0
+## Title: SimplePromotion
+## Notes: A Template to promote your other addons! Includes a page system with addon buttons to hover over with tooltips, when you click, you get an editbox with a link
+
+## Category: Development Tools
+## Category-deDE: Entwicklungstools
+## Category-esES: Herramientas de Desarrollo
+## Category-esMX: Herramientas de Desarrollo
+## Category-frFR: Outils de Développement
+## Category-itIT:
+## Category-koKR:
+## Category-ptBR: Ferramentas de Desenvolvimento
+## Category-ruRU: Инструменты разработки
+## Category-zhCN: 开发工具
+## Category-zhTW: 開發工具
+
+## Author: Legolando
+## AllowLoadGameType: mainline, mists, cata, vanilla
+## X-Curse-Project-ID: 1320195
+
+SimplePromotionTemplate\SimplePromotionTemplate.xml
+exampleUsage.lua
